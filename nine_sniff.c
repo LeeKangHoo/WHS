@@ -57,12 +57,14 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
   if (ntohs(eth->ether_type) == 0x0800) { // 0x0800 is IP type
     struct ipheader * ip = (struct ipheader *)
 	    (packet + sizeof(struct ethheader));
+    
+    
 
-  struct tcpheader *tcp = (struct tcpheader *)
+    struct tcpheader *tcp = (struct tcpheader *)
 	 (packet + sizeof(struct ethheader) + sizeof(struct ipheader));
 
     //ip address 
-    printf("***********message*********\n");
+    printf("********************\n");
     printf("       src_ip: %s\n", inet_ntoa(ip->iph_sourceip));   
     printf("       dst_ip: %s\n", inet_ntoa(ip->iph_destip));    
     
@@ -88,18 +90,17 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 		    printf(":");
 	    
        }
-    }
+    
 
-   //src_port
-    printf("%d\n",tcp->tcp_sport);
-
+   //port
+    printf("\n  src_port:%d\n",ntohs(tcp->tcp_sport));
+    printf("  dst_port:%d\n",ntohs(tcp->tcp_dport));
 
 
     // msg 
-    printf("\n   Protocol: TCP\n");
-    printf("%s\n", packet + sizeof(struct ethheader) + sizeof(struct ipheader));
-    printf("***********message*********\n");
-
+    printf("msg : %s\n", packet + sizeof(struct ethheader) + sizeof(struct ipheader)+ sizeof(struct tcpheader));
+    printf("********************\n");
+  }
 }
 
 int main()
