@@ -65,11 +65,11 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
     //ip address 
     printf("********************\n");
-    printf("       src_ip: %s\n", inet_ntoa(ip->iph_sourceip));   
-    printf("       dst_ip: %s\n", inet_ntoa(ip->iph_destip));    
+    printf("   src_ip: %s\n", inet_ntoa(ip->iph_sourceip));   
+    printf("   dst_ip: %s\n", inet_ntoa(ip->iph_destip));    
     
     //src_mac
-    printf(" src_mac: ");
+    printf("   src_mac: ");
 
     for (int i = 0;i< 6;i++)
        {
@@ -81,7 +81,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
     
 
     //dst_mac
-    printf("\n dst_mac: ");
+    printf("\n   dst_mac: ");
 
     for (int i = 0;i< 6;i++)
        {
@@ -93,8 +93,8 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
     
 
    //port
-    printf("\n  src_port:%d\n",ntohs(tcp->tcp_sport));
-    printf("  dst_port:%d\n",ntohs(tcp->tcp_dport));
+    printf("\n   src_port:%d\n",ntohs(tcp->tcp_sport));
+    printf("   dst_port:%d\n",ntohs(tcp->tcp_dport));
 
 
     // msg 
